@@ -13,4 +13,31 @@ Kích thước của con trỏ phụ thuộc vào kiến trúc của máy tính:
 - **Ta dùng hàm sizeof() để biết được kích thước của biến**
 > - int *a =  NULL
 > - printf("kich thuoc: %d\n", sizeoff(a))
-- 
+# Void Pointer
+## Định nghĩa:
+Void pointer thường dùng để trỏ để tới bất kỳ địa chỉ nào mà không cần biết tới kiểu dữ liệu của giá trị tại địa chỉ đó. 
+
+Ví dụ: 
+
+'#include <stdio.h>'
+'#include <stdlib.h>'
+
+int main() {
+   
+    int value = 5;
+    double test = 15.7;
+    char letter = 'A';
+   
+    void *ptr = &value;
+    printf("value is: %d\n", *(int*)(ptr));
+
+    ptr = &test;
+    printf("value is: %f\n", *(double*)(ptr));
+
+    ptr = &letter;
+    printf("value is: %c\n", *(char*)(ptr));
+   
+    return 0;
+}
+
+
