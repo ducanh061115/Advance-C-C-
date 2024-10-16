@@ -164,7 +164,61 @@ int main(int argc, char const *argv[])
 }
 ```
 - Trong ví dụ trên ta có thể thấy biến pen_length dùng để lưu trữ cố định giá trị cho tất cả các đối tượng thuộc lớp PEN. Đầu tiên ta gán giá trị của pen_length = 10 thì tất cả các đối tượng thuộc lớp PEN đều có output là 10 sau đó ta gọi hàm set_length từ biến blue_pen và set_length = 9 vì vậy oen_length ở tất cả các đối tượng thuộc lớp PEN đều có giá trị output là 9.
+# Volatile 
+Báo hiệu cho trình biên dịch biết 1 biến có thể thay đổi ngẫu nhiên nhằm ngăn chặn trình biên dịch tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó.
+- Ví dụ:
+```
+#include "stm32f10x.h"
+
+volatile int i = 0;
+int a = 100;
+
+int main()
+{
+	
+	while(1)
+	{
+		i = *((int*) 0x20000000);
+		if (i > 0)
+		{
+			break;
+		}
+		
+	}
+	a = 200;
+}
+```
+- Ví dụ trên ta có thể thấy biến i được gán cho địa chỉ 0x200... và vòng lặp sẽ kết thúc khi i>0 và in ra a=200. Biến volatile giúp cho khi biến i thay đổi bất ngờ thì chương trình không thực hiện xong vòng lặp thì xóa biến i đi.
 # Register
+Trong ngôn ngữ lập trình C, từ khóa register được sử dụng để chỉ ra ý muốn của lập trình viên rằng một biến được sử dụng thường xuyên và có thể được lưu trữ trong một thanh ghi máy tính, chứ không phải trong bộ nhớ RAM. Việc này nhằm tăng tốc độ truy cập. Tuy nhiên, lưu ý rằng việc sử dụng register chỉ là một đề xuất cho trình biên dịch và không đảm bảo rằng biến sẽ được lưu trữ trong thanh ghi. Trong thực tế, trình biên dịch có thể quyết định không tuân thủ lời đề xuất này.
+```#include <stdio.h>
+#include <time.h>
+
+int main() {
+    // Lưu thời điểm bắt đầu
+    clock_t start_time = clock();
+    register int i;
+
+    // Đoạn mã của chương trình
+    for (i = 0; i < 2000000; ++i) {
+        // Thực hiện một số công việc bất kỳ
+    }
+
+    // Lưu thời điểm kết thúc
+    clock_t end_time = clock();
+
+    // Tính thời gian chạy bằng miligiây
+    double time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+
+    printf("Thoi gian chay cua chuong trinh: %f giay\n", time_taken);
+
+    return 0;
+}
+```
+- Ta dùng register để lưu biến i khi đó biến i sẽ không được lưu trữ trong RAM mà được lưu trữ trực tiếp trên bộ nhớ của thanh ghi nhờ đó rút ngắn quá trình tính toán do bớt được thời gian chuyển dữ liệu từ RAM sang thanh ghi để bộ xử lý ALU tính toán.
+
+
+
 
 
 
