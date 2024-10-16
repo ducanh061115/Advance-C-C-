@@ -1,2 +1,0 @@
-# Extern
-## Định nghĩa
