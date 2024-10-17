@@ -35,5 +35,20 @@ break; }
 }
 ```
 # Thư viện setjmp.h 
-- setjmp.h là một thư viện trong ngôn ngữ lập trình C, cung cấp hai hàm chính là setjmp và longjmp. Cả hai hàm này thường được sử dụng để thực hiện xử lý ngoại lệ trong C, mặc dù nó không phải là một cách tiêu biểu để xử lý ngoại lệ trong ngôn ngữ này.
-
+- setjmp.h là một thư viện trong ngôn ngữ lập trình C, cung cấp hai hàm chính là setjmp và longjmp. Thư viện này có tác dụng cho ta nháy từ địa chỉ của 1 biến trong hàm này sang địa chỉ biến của 1 hàm khác.
+```
+#include<stdio.h>
+#include<setjmp.h>
+jmp_buf buf;
+int main(int argc; char const *argv[]){
+int he=setjmp(buf)
+if (he == 0){
+printf("gia tri: %d\n", he)
+} else if(he == 3){
+printf("gia tri: %d\n", he)
+}
+longjmp(buf,3);
+return 0;
+}
+```
+- Ví dụ trên ta có thể thấy khi kết thúc vòng lặp thực hiện câu lệnh longjmp(buf,3) thì nó sẽ nhảy lại câu lệnh nơi chứa setjmp và gán giá trị cho biến he = 3.
