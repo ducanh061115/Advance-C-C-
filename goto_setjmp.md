@@ -52,3 +52,4 @@ return 0;
 }
 ```
 - Ví dụ trên ta có thể thấy khi kết thúc vòng lặp thực hiện câu lệnh longjmp(buf,3) thì nó sẽ nhảy lại câu lệnh nơi chứa setjmp và gán giá trị cho biến he = 3.
+- Lưu ý khi ta xác định kiểu dữ liệu của biến là jmp_buf thì ta chỉ được khởi tạo chứ không được gán giá trị cho biến.
