@@ -49,4 +49,5 @@ int compareByID(const void *a, const void *b) {
 ```
 - Ta có thể thấy tất cả các hàm so sánh đều dùng hàm con trỏ hằng. Lí do là trong quá trình chạy chương trình các hàm void chỉ có tác dụng lưu trữ địa chỉ của các con trỏ sv1 sv2. Do vậy để đảm bảo giá trị lưu trữ không bị thay đổi trong quá trình chạy chương trình ta dùng hàm con trỏ hằng.
 - Hàm stringCompare được tạo là do tên là 1 chuỗi kí tự do vậy để sắp xếp ta phải so sánh từng biến của chuỗi đó. Trong vòng lặp while có phép toán logic (*str1 && *str1 == *str2) vì nếu không có điều kiện *str1 # \0 thì khi so sánh từng biến của chuỗi str1 và str2 khi hết kí tự đến \0 sẽ tạo ra vòng lặp vô hạn vì vậy điều kiên *str1 # \0 vào để làm điều kiện kết thúc vòng lặp.
-- Các hàm so sánh tên điểm và id đều sử dụng chung 1 kiểu dữ liệu. Các hàm so sánh đều nhận 2 tham số là con trỏ kiểu void a và b. Do khi so sánh hàm sẽ truyền từng phần tử của con trỏ vào hàm để so sánh thứ tự nên ta cần 2 con trỏ a và b để trỏ đến địa chỉ của 
+- Các hàm so sánh tên điểm và id đều sử dụng chung 1 kiểu dữ liệu. Các hàm so sánh đều nhận 2 tham số là con trỏ kiểu void a và b. Do khi so sánh hàm sẽ truyền từng phần tử của con trỏ vào hàm để so sánh thứ tự nên ta cần 2 con trỏ a và b để trỏ đến các phần tử của mảng được so sánh.
+- 
