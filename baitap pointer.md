@@ -72,4 +72,52 @@ void display(SinhVien *array, size_t size) {
    printf("\n");
 }
 ```
-- 
+- Hàm sort dùng để sắp xếp sinh viên theo các tiêu chí mà con trỏ hàm compareFunc chỉ định thông qua các hàm so sánh ở trên còn hàm display để hiện thị các mảng đã được sắp xếp
+- Với hàm sort ta tạo ra một con trỏ hàm kiểu int và truyền vào đó 2 con trỏ kiểu void. 2 con trỏ void được định nghĩa con trỏ hằng vì mục đích của 2 con trỏ void này chỉ để hứng giá trị của các mảng được so sánh vì vậy dùng const để giữ nguyên giá trị của 2 con trỏ void không bị thay đổi trong quá trình chạy chương trình
+- Để so sánh ta dùng 2 vòng lặp for lồng nhau. Ta có thể thấy i < size -1 vì j bắt đầu từ phần tử i+1, để không bị tràn bộ nhớ nếu khi thực hiện vòng lặp j thì phần tử cuối của mảng i sẽ là size - 2 và phần tử bắt đầu vòng lặp j là i+1 và kết thúc là phần tử cuối size -1 . Và với điều kiện i < size -1 thì array[i] và array[j] sẽ so sánh được tất cả phần tử mà phần tử cuối sẽ không phải so sánh khi không còn phần tử nào. Nguyên nhân gây tràn bộ nhớ là do bộ đếm máy tính bắt đầu từ phần tử 0 do đó phần tử cuối của 1 mảng là size - 1.
+- Khi hàm compareFunc trả giá trị so sánh của array[i] với array[j] trả giá trị dương thì sẽ thực hiện hoán đổi.
+- Cuối cùng hàm int main() thực hiện chương trình:
+```
+int main() {
+   SinhVien danhSachSV[] = {
+       {  
+           .ten = "Hoang",
+           .diemTrungBinh = 7.5,
+           .id = 100
+       },
+       {
+           .ten = "Tuan",
+           .diemTrungBinh = 4.5,
+           .id = 101
+       },
+       {
+           .ten = "Vy",
+           .diemTrungBinh = 6.8,
+           .id = 102},
+       {  
+           .ten = "Ngan",
+           .diemTrungBinh = 5.6,
+           .id = 10
+       },
+   };
+   size_t size = sizeof(danhSachSV) / sizeof(danhSachSV[0]);
+
+   // Sắp xếp theo tên
+   sort(danhSachSV, size, compareByName);
+
+   display(danhSachSV, size);
+
+   // Sắp xếp theo điểm trung bình
+   sort(danhSachSV, size, compareByDiemTrungBinh);
+
+   display(danhSachSV, size);
+
+   // Sắp xếp theo ID
+   sort(danhSachSV, size, compareByID);
+
+   display(danhSachSV, size);
+
+   return 0;
+}
+```
+- Đơn giản ta nhập thông tin học sinh, điểm, ID vào sau đó tính kích thước của mảng cần thiết size. Khi sắp xếp ta chỉ cần trỏ đến con trỏ mà ta cần lấy dữ liệu và thực hiện xuất ra màn hình qua hàm display.
