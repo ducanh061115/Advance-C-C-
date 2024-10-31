@@ -93,4 +93,13 @@ malloc(5); // cấp phát 5 ô địa chỉ ở phân vùng heap
 return 0;
 }
 ```
+## 3. So sánh giữa malloc, calloc và realloc:
+| | Malloc | Calloc | Realloc |
+| :--- | :--- | :--- | :--- |
+|**Cú pháp**| void* malloc (size_t size); | void* calloc (size_t num, size_t size); | void* realloc(ptr, new_size) |
+|**Mục đích**| Cấp phát 1 vùng nhớ có kích thước là **size** | Cấp phát 1 vùng nhớ chứa **num** phần tử, mỗi phần tử có kích thước là **size**  | Cấp phát lại vùng nhớ cho con trỏ **ptr** với kích thước **new_size** mới  |
+|**Số tham số**| 1 | 2 | 2 |
+|**Giá tri trả về**| Con trỏ trỏ tới vùng nhớ được cấp phát nếu thành công, trả về con trỏ NULL nếu không thành công | Con trỏ trỏ tới vùng nhớ được cấp phát nếu thành công, trả về con trỏ NULL nếu không thành công | Con trỏ trỏ tới vùng nhớ được cấp phát nếu thành công, trả về con trỏ NULL nếu không thành công |
+|**Giá trị khởi tạo**| giá trị rác | được gán bằng 0 | Không thay đổi giá trị các phần tử sẵn có |
+
 
